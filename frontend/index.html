@@ -3,164 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Pakistan Real Estate Price Predictor</title>
+    <title>Lahore Property Appraisal: ML Price Predictor</title>
 
     <link rel="stylesheet" href="style.css">
-</head>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
 <body>
 
-    <div class="container">
+    <div class="blueprint-bg"></div>
 
-        <header>
-            <h1>🏠 Pakistan Real Estate Price Predictor</h1>
+    <main class="container">
 
-            <p>
-                Estimate Lahore house prices using a Machine Learning model.
-            </p>
-        </header>
+        <!-- ================= NAVBAR ================= -->
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-mark">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 15L16 6L26 15V26H19V19H13V26H6V15Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="logo-text">Appraiser<em>.ml</em></span>
+            </div>
 
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">☰</button>
 
-        <section class="prediction-card">
+            <div class="nav-links" id="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#model">Model</a>
+                <a href="https://github.com/Jahanzeb-abbasi/pakistan-real-estate-price-predictor" target="_blank">Repository ↗</a>
+            </div>
+        </nav>
 
-            <h2>Property Details</h2>
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="eyebrow">Applied ML · Lahore Housing Market</span>
+                <h1>Know a home's<br>worth <span>before</span><br>you view it.</h1>
+                <p>
+                    A regression model trained on 18,000+ real listings estimates
+                    residential property value in Lahore in seconds, from location,
+                    size, and room configuration.
+                </p>
+                <a href="#predict" class="hero-cta">Get an estimate ↓</a>
+            </div>
+
+            <div class="hero-plan">
+                <div class="plan-grid">
+                    <svg class="plan-house" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="20" width="160" height="160" stroke="currentColor" stroke-width="1" stroke-dasharray="2 4" opacity="0.35"/>
+                        <path d="M35 95L100 40L165 95V170H115V125H85V170H35V95Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M85 170V125H115V170" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M70 95H130" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        <line x1="35" y1="185" x2="165" y2="185" stroke="currentColor" stroke-width="1"/>
+                        <line x1="35" y1="180" x2="35" y2="190" stroke="currentColor" stroke-width="1"/>
+                        <line x1="165" y1="180" x2="165" y2="190" stroke="currentColor" stroke-width="1"/>
+                        <text x="100" y="197" text-anchor="middle" class="plan-label">10 MARLA</text>
+                    </svg>
+                </div>
+                <p class="plan-caption">Elevation, schematic</p>
+            </div>
+        </section>
+
+        <!-- ================= PREDICTION FORM ================= -->
+        <section class="deed-card" id="predict">
+            <div class="deed-header">
+                <span class="eyebrow">Property Particulars</span>
+                <h2>Enter the details</h2>
+            </div>
 
             <form id="prediction-form">
 
-                <div class="form-group">
+                <div class="form-group location-group">
                     <label for="location">Location</label>
-
-                    <select id="location" required>
-                        <option>Loading locations...</option>
-                    </select>
+                    <input type="text" id="location" list="location-options"
+                        placeholder="Loading locations…" autocomplete="off" required>
+                    <datalist id="location-options"></datalist>
+                    <span class="field-hint">Type to search, or click the field to browse all areas.</span>
                 </div>
 
-
-                <div class="row">
-
+                <div class="grid property-grid">
                     <div class="form-group">
                         <label for="area">Area (Marla)</label>
-
-                        <input
-                            type="number"
-                            id="area"
-                            min="1"
-                            step="0.5"
-                            required
-                        >
+                        <input type="number" id="area" step="0.5" min="1" placeholder="e.g. 10" required>
                     </div>
-
 
                     <div class="form-group">
-                        <label for="built-year">Built Year</label>
-
-                        <input
-                            type="number"
-                            id="built-year"
-                            min="1950"
-                            max="2026"
-                            required
-                        >
+                        <label for="built-year">Built year</label>
+                        <input type="number" id="built-year" min="1950" max="2026" placeholder="e.g. 2015" required>
                     </div>
-
-                </div>
-
-
-                <div class="row">
 
                     <div class="form-group">
                         <label for="bedrooms">Bedrooms</label>
-
-                        <input
-                            type="number"
-                            id="bedrooms"
-                            min="1"
-                            required
-                        >
+                        <input type="number" id="bedrooms" min="0" placeholder="e.g. 4" required>
                     </div>
-
 
                     <div class="form-group">
                         <label for="bathrooms">Bathrooms</label>
-
-                        <input
-                            type="number"
-                            id="bathrooms"
-                            min="1"
-                            required
-                        >
+                        <input type="number" id="bathrooms" min="0" placeholder="e.g. 3" required>
                     </div>
-
-                </div>
-
-
-                <div class="row">
 
                     <div class="form-group">
                         <label for="kitchens">Kitchens</label>
-
-                        <input
-                            type="number"
-                            id="kitchens"
-                            min="1"
-                            required
-                        >
+                        <input type="number" id="kitchens" min="0" value="1" required>
                     </div>
-
 
                     <div class="form-group">
-                        <label for="store-rooms">Store Rooms</label>
-
-                        <input
-                            type="number"
-                            id="store-rooms"
-                            min="0"
-                            required
-                        >
+                        <label for="store-rooms">Store rooms</label>
+                        <input type="number" id="store-rooms" min="0" value="0" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="servant-quarters">Servant quarters</label>
+                        <input type="number" id="servant-quarters" min="0" value="0" required>
+                    </div>
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="servant-quarters">
-                        Servant Quarters
-                    </label>
-
-                    <input
-                        type="number"
-                        id="servant-quarters"
-                        min="0"
-                        required
-                    >
-
-                </div>
-
-
-                <button type="submit" id="predict-btn">
-                    Predict Price
+                <button id="predict-btn" type="submit">
+                    <span id="btn-text">Estimate value</span>
+                    <span id="spinner" class="spinner hidden"></span>
                 </button>
-
             </form>
-
         </section>
 
-
+        <!-- ================= RESULT ================= -->
         <section class="result-card">
+            <div class="seal" aria-hidden="true">
+                <svg viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="1"/>
+                    <path id="sealArc" d="M 60 16 A 44 44 0 0 1 104 60" fill="none"/>
+                    <text font-size="8" letter-spacing="2" fill="currentColor">
+                        <textPath href="#sealArc" startOffset="2">MODEL VERIFIED</textPath>
+                    </text>
+                    <path d="M40 65 L52 77 L82 47" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
 
-            <h2>Estimated Price</h2>
+            <p class="result-title">Estimated Market Value</p>
+            <h2 id="prediction-result">Awaiting input</h2>
+            <p id="prediction-status">Enter the property details and get an estimate.</p>
 
-            <p id="prediction-result">
-                Enter property details and click Predict Price.
+            <div class="prediction-details">
+                <div>
+                    <span>Location</span>
+                    <strong id="result-location">Not set</strong>
+                </div>
+                <div>
+                    <span>Area</span>
+                    <strong id="result-area">Not set</strong>
+                </div>
+                <div>
+                    <span>Bedrooms</span>
+                    <strong id="result-bedrooms">Not set</strong>
+                </div>
+                <div>
+                    <span>Bathrooms</span>
+                    <strong id="result-bathrooms">Not set</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MODEL STATS ================= -->
+        <section class="ledger-section" id="model">
+            <div class="deed-header">
+                <span class="eyebrow">Under The Hood</span>
+                <h2>Model ledger</h2>
+            </div>
+
+            <div class="ledger">
+                <div class="ledger-row">
+                    <div>
+                        <span class="ledger-label">Algorithm</span>
+                        <p class="ledger-note">A single weighted equation over all input features, chosen for interpretability.</p>
+                    </div>
+                    <span class="ledger-value" id="model-name">Linear Regression</span>
+                </div>
+                <div class="ledger-row">
+                    <div>
+                        <span class="ledger-label">R² score</span>
+                        <p class="ledger-note">Share of price variance the model explains from location, size, and rooms.</p>
+                    </div>
+                    <span class="ledger-value" id="r2-score">0.73</span>
+                </div>
+                <div class="ledger-row">
+                    <div>
+                        <span class="ledger-label">MAE</span>
+                        <p class="ledger-note">On average, a prediction lands within this amount of the true price.</p>
+                    </div>
+                    <span class="ledger-value" id="mae">PKR 1.89 Crore</span>
+                </div>
+                <div class="ledger-row">
+                    <div>
+                        <span class="ledger-label">RMSE</span>
+                        <p class="ledger-note">Weighs large misses more heavily. The gap above MAE points to a few high-value outliers.</p>
+                    </div>
+                    <span class="ledger-value" id="rmse">PKR 4.24 Crore</span>
+                </div>
+                <div class="ledger-row">
+                    <div>
+                        <span class="ledger-label">Training set</span>
+                        <p class="ledger-note">Real listings scraped and cleaned before modelling.</p>
+                    </div>
+                    <span class="ledger-value">18,000+ listings</span>
+                </div>
+            </div>
+
+            <div class="version-note">
+                <span class="version-tag">v1</span>
+                <p>
+                    This is the first release of the model, and it's built to be improved on.
+                    A linear model was the right starting point for a transparent baseline, but
+                    the roadmap includes testing tree-based approaches like Random Forest and
+                    Gradient Boosting, and adding features such as proximity to main roads,
+                    floor count, and neighborhood-level amenity scores. The goal is a tighter
+                    gap between MAE and RMSE, and a higher R² without losing the ability to
+                    explain why the model landed on a given price.
+                </p>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="about" id="about">
+            <div class="deed-header">
+                <span class="eyebrow">The Project</span>
+                <h2>How it's built</h2>
+            </div>
+
+            <p>
+                This tool predicts residential property prices in Lahore using a supervised
+                regression pipeline built with Scikit-learn and served through FastAPI.
+                Location, area, bedrooms, bathrooms, kitchens, built year, store rooms, and
+                servant quarters are engineered into features, with location encoded numerically
+                alongside the physical property attributes. The model trains on the bulk of the
+                18,000+ listings and is scored against a held-out set it never saw during
+                training, using R², MAE, and RMSE together rather than a single accuracy figure,
+                since price prediction is a continuous target, not a classification problem.
             </p>
 
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-mark">01</span>
+                    <h3>Data cleaning</h3>
+                    <p>Raw housing listings processed and structured for modelling.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-mark">02</span>
+                    <h3>Feature engineering</h3>
+                    <p>Property attributes converted into signals the model can use.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-mark">03</span>
+                    <h3>ML pipeline</h3>
+                    <p>A Scikit-learn pipeline handles preprocessing and regression.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-mark">04</span>
+                    <h3>Deployment</h3>
+                    <p>FastAPI backend, served to this HTML/CSS/JS frontend.</p>
+                </div>
+            </div>
         </section>
 
-    </div>
+        <!-- ================= FOOTER ================= -->
+        <footer>
+            <div class="footer-content">
+                <p>Built by <strong>Jahanzeb Abbasi</strong></p>
+
+                <div class="tech-stack">
+                    <span>Python</span>
+                    <span>Pandas</span>
+                    <span>NumPy</span>
+                    <span>Scikit-learn</span>
+                    <span>Linear Regression</span>
+                    <span>FastAPI</span>
+                </div>
+
+                <a href="https://github.com/Jahanzeb-abbasi/pakistan-real-estate-price-predictor" target="_blank" class="github-btn">
+                    View repository ↗
+                </a>
+            </div>
+        </footer>
+
+    </main>
 
     <script src="script.js"></script>
-
 </body>
 </html>
