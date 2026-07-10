@@ -23,8 +23,10 @@ def predict_price(features):
 
     input_df = pd.DataFrame([feature_dict])
     
-    prediction = model.predict(input_df)
-    return float(prediction[0])
+    prediction = model.predict(input_df)[0]
+    prediction = max(prediction, 1000000)
+
+    return float(prediction)
     
 
 def get_locations():
