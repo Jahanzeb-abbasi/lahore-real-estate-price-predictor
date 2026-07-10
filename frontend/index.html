@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pakistan Real Estate Price Predictor</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>🏠 Pakistan Real Estate Price Predictor</h1>
+
+            <p>
+                Estimate Lahore house prices using a Machine Learning model.
+            </p>
+        </header>
+
+
+        <section class="prediction-card">
+
+            <h2>Property Details</h2>
+
+            <form id="prediction-form">
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+
+                    <select id="location" required>
+                        <option>Loading locations...</option>
+                    </select>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="area">Area (Marla)</label>
+
+                        <input
+                            type="number"
+                            id="area"
+                            min="1"
+                            step="0.5"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="built-year">Built Year</label>
+
+                        <input
+                            type="number"
+                            id="built-year"
+                            min="1950"
+                            max="2026"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="bedrooms">Bedrooms</label>
+
+                        <input
+                            type="number"
+                            id="bedrooms"
+                            min="1"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="bathrooms">Bathrooms</label>
+
+                        <input
+                            type="number"
+                            id="bathrooms"
+                            min="1"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="kitchens">Kitchens</label>
+
+                        <input
+                            type="number"
+                            id="kitchens"
+                            min="1"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="store-rooms">Store Rooms</label>
+
+                        <input
+                            type="number"
+                            id="store-rooms"
+                            min="0"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="servant-quarters">
+                        Servant Quarters
+                    </label>
+
+                    <input
+                        type="number"
+                        id="servant-quarters"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" id="predict-btn">
+                    Predict Price
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <section class="result-card">
+
+            <h2>Estimated Price</h2>
+
+            <p id="prediction-result">
+                Enter property details and click Predict Price.
+            </p>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
