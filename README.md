@@ -13,7 +13,7 @@ An end-to-end Machine Learning application that predicts residential property pr
 
 **Frontend:** *(Coming Soon)*
 
-**Backend API:** *(Coming Soon)*
+**Backend API:** *https://lahore-real-estate-price-predictor.onrender.com*
 
 ---
 

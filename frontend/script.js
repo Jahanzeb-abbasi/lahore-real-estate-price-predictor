@@ -1,6 +1,6 @@
 // Point this at your deployed FastAPI backend before going live.
 // Keep it as-is for local development against `uvicorn`.
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://lahore-real-estate-price-predictor.onrender.com";
 
 const form = document.getElementById("prediction-form");
 const locationInput = document.getElementById("location");
