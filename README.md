@@ -11,7 +11,7 @@ An end-to-end Machine Learning application that predicts residential property pr
 
 ## 🚀 Live Demo
 
-**Frontend:** *(Coming Soon)*
+**Frontend:** *(https://lahore-real-estate-price-prediction.netlify.app/)*
 
 **Backend API:** *https://lahore-real-estate-price-predictor.onrender.com*
 
